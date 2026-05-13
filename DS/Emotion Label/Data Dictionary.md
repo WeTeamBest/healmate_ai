@@ -1,7 +1,7 @@
 # Data Dictionary (Emotion Label Dataset)
 ## Dataset
-1. 'Emotion Label Dataset.xlsx': data label emosi yang dihasilkan dari sumber label emotion.
-2. 'Emotion Dataset Merged.xlsx': data label emosi hasil penggabungan antara `Emotion Label Dataset` dengan `Empathetic Counseling`.
+1. `Emotion Label Dataset.xlsx`: data label emosi yang dihasilkan dari sumber label emotion.
+2. `Emotion Dataset Merged.xlsx`: data label emosi hasil penggabungan antara `Emotion Label Dataset` dengan `Empathetic Counseling`.
 
 ## Kolom
 - `text_clean_v1`: teks yang telah dibersihkan tanpa menghapus tanda baca seperti titik (.), koma(,), dan sebagainya.
