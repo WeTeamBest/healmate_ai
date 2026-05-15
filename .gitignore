@@ -59,3 +59,19 @@ Thumbs.db
 # Local databases
 *.sqlite3
 *.db
+
+
+
+# Frontend & Backend (FS)
+node_modules/
+dist/
+build/
+.vscode/settings.json
+
+# Folders to ignore
+/sample/
+/docs/
+
+# Root files to ignore
+PROGRES.md
+README.md
