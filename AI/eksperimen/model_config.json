@@ -1,0 +1,30 @@
+{
+  "model_name": "distilbert-base-uncased",
+  "num_classes": 3,
+  "class_names": [
+    "acceptance",
+    "anger",
+    "anxiety"
+  ],
+  "max_len": 128,
+  "dropout": 0.3,
+  "hs_min": -0.49997494828562716,
+  "hs_max": 0.998131314005187,
+  "confidence_threshold": 0.5,
+  "healing_zones": {
+    "terpuruk": [
+      0.0,
+      0.3
+    ],
+    "transisi": [
+      0.3,
+      0.7
+    ],
+    "menerima": [
+      0.7,
+      1.0
+    ]
+  },
+  "test_accuracy": 0.7467532467532467,
+  "test_mae": 0.12906094658546272
+}

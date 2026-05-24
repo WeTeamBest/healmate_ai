@@ -1,0 +1,8 @@
+- [ ] Create notebook generation script using `nbformat`.
+- [ ] Add Data Loading and Setup cells.
+- [ ] Add Text Tokenization and Padding cells.
+- [ ] Add Multi-Output Model Architecture cells.
+- [ ] Add Training Loop and Evaluation (V1 vs V2) cells.
+- [ ] Add Inference Testing cells for manual trial.
+- [ ] Execute script to generate `notebook_2.ipynb`.
+- [ ] Verify `notebook_2.ipynb` content.
