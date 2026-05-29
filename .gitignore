@@ -1,4 +1,6 @@
-# Python
+# =========================
+# 1. Python & Environments
+# =========================
 __pycache__/
 *.py[cod]
 *$py.class
@@ -8,126 +10,61 @@ build/
 dist/
 *.egg-info/
 .eggs/
-
-# Virtual environment
 .venv/
 venv/
 env/
 ENV/
-
-# Environment variables
 .env
 .env.*
 !.env.example
 
-# Logs
+# =========================
+# 2. Logs, Testing & Jupyter
+# =========================
 *.log
 logs/
-
-# Jupyter
 .ipynb_checkpoints/
-
-# Testing & coverage
 .pytest_cache/
 .coverage
 .coverage.*
 htmlcov/
-
-# Type checker / linter caches
 .mypy_cache/
 .ruff_cache/
 .pyre/
 
-# IDE / Editor
+# =========================
+# 3. IDE, Editor & OS Files
+# =========================
 .vscode/
 .idea/
 *.swp
 *.swo
-
-# OS files
 .DS_Store
 Thumbs.db
 
-# Model / data artifacts (optional, adjust as needed)
-*.h5
-*.ckpt
-*.pt
-*.pth
-*.onnx
-*.pb
-
-
-
-# Local databases
+# =========================
+# 4. Databases
+# =========================
 *.sqlite3
 *.db
 
-
-
-# Frontend & Backend (FS)
+# =========================
+# 5. Frontend & Backend (FS)
+# =========================
 node_modules/
-dist/
-build/
 .vscode/settings.json
 
-# Folders to ignore
+# =========================
+# 6. Folders & Root Files to Ignore
+# =========================
 /sample/
 /docs/
-
-# Root files to ignore
 PROGRES.md
 README.md
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-dist/
-*.egg-info/
-.eggs/
 
-# Virtual environment
-.venv/
-venv/
-env/
-ENV/
-
-# Environment variables
-.env
-.env.*
-!.env.example
-
-# Logs
-*.log
-logs/
-
-# Jupyter
-.ipynb_checkpoints/
-
-# Testing & coverage
-.pytest_cache/
-.coverage
-.coverage.*
-htmlcov/
-
-# Type checker / linter caches
-.mypy_cache/
-.ruff_cache/
-.pyre/
-
-# IDE / Editor
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Model / data artifacts
+# =========================
+# 7. AI Models & Data Artifacts (BLOKIR SEMUA)
+# =========================
 *.h5
 *.ckpt
 *.pt
@@ -138,31 +75,22 @@ Thumbs.db
 *.pkl
 models/
 saved_model/
-
-# Local databases
-*.sqlite3
-*.db
-
-# Frontend & Backend (FS)
-node_modules/
-dist/
-build/
-.vscode/settings.json
-
-# Folders to ignore
-/sample/
-/docs/
-
-# Root files to ignore
-PROGRES.md
-README.md
-node_modules/
 AI/**/models/
 AI/**/saved_model/
+
+# Folder eksperimen spesifik yang diblokir
 AI/eksperimen2/farizky/logs/
 AI/eksperimen2/farizky/models/
 AI/eksperimen2/farizky/saved_model/
-logs/
-models/
-saved_model/
 AI/eksperimen2/farizky/results/all_models/
+AI/eksperimen2/farizky/trash/
+AI/eksperimen2/trash/
+
+# =========================
+# 8. PENGECUALIAN (YANG BOLEH DI-PUSH)
+# =========================
+# Tanda seru (!) artinya mengizinkan folder/file ini masuk Git
+!AI/eksperimen2/farizky/results/best_model/
+!AI/eksperimen2/farizky/results/artifacts/
+!**/*best_model*.keras
+!**/artifacts/*.pkl
