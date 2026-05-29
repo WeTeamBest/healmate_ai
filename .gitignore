@@ -90,7 +90,13 @@ AI/eksperimen2/trash/
 # 8. PENGECUALIAN (YANG BOLEH DI-PUSH)
 # =========================
 # Tanda seru (!) artinya mengizinkan folder/file ini masuk Git
+# Izinkan folder best_model dan seluruh isinya secara rekursif (mengabaikan blokir *.pb)
 !AI/eksperimen2/farizky/results/best_model/
+!AI/eksperimen2/farizky/results/best_model/**
+
+# Izinkan folder artifacts dan seluruh isinya
 !AI/eksperimen2/farizky/results/artifacts/
+!AI/eksperimen2/farizky/results/artifacts/**
+
 !**/*best_model*.keras
 !**/artifacts/*.pkl
