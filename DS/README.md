@@ -1,49 +1,39 @@
 # 🧠 Data Science Path - HealMate AI: Intelligent Post-Breakup Recovery Partner
 
-## 📌 Project Overview
-Folder Data Science (DS) ini memuat proses pengembangan dataset emosi dan *exploratory data analysis* (EDA) untuk proyek **HealMate AI**. Proyek ini bertujuan membangun sistem pendamping emosional berbasis AI untuk membantu pengguna (khususnya Generasi Z) mengelola permasalahan emosional pasca-putus cinta.
+## Latar Belakang
+Proyek **HealMate AI** dikembangkan untuk menjadi sistem pendamping emosional berbasis AI guna membantu pengguna (khususnya Generasi Z) mengelola permasalahan dan fase krisis pasca-putus cinta. Pada *learning path* Data Science, fokus utamanya adalah mengkurasi dataset teks, melakukan analisis sentimen, serta merumuskan metrik pemulihan emosional (*Healing Score*) agar AI dapat merespons pengguna secara empatik dan terukur.
 
-## 🗂️ Folder Structure
-Struktur repositori ini dibagi menjadi beberapa direktori utama sesuai dengan alur pengerjaan:
+## Import Library
+Dalam proses pengolahan data, berbagai library Python digunakan untuk efisiensi komputasi:
+* `pandas` & `numpy`: Manipulasi data tabular dan komputasi numerik.
+* `re`: *Regular expressions* untuk *text preprocessing* dan pembersihan karakter.
+* `matplotlib` & `wordcloud`: Pembuatan visualisasi data dan distribusi kata.
+* `collections.Counter`: Perhitungan frekuensi kemunculan kata spesifik.
+* `datasets`: Mengunduh dataset publik dari repositori Hugging Face.
 
-```text
-/DS
-│
-├── Dashboard Streamlit/
-│   ├── Emotion Dataset Merged (Healing Score).xlsx
-│   ├── README.md
-│   ├── main.py
-│   └── requirements.txt
-├── Emotion Label/
-│   ├── Data Dictionary.md
-│   ├── Emotion Dataset Merged (Healing Score).xlsx
-│   ├── Emotion Dataset Merged.xlsx
-│   ├── Notebook Emotion Label.ipynb
-│   ├── distribusi_emosi.png
-│   ├── preprocessing_noprob.py
-│   ├── wordcloud_acceptance.png
-│   ├── wordcloud_anger.png
-│   └── wordcloud_anxiety.png
-├── Empathetic Counseling Dataset/
-│   ├── Empathetic Counseling.xlsx
-│   ├── Metadata Empathetic Counseling.xlsx
-│   └── Notebook Empathetic Counseling.ipynb
-└── CC26-PSU106 Laporan Teknis Data Scientist.pdf
-```
+## STRUKTUR NOTEBOOK PENGEMBANGAN DATA SCIENTIST
+Untuk mengoptimalkan efisiensi komputasi dan memori, proses pengembangan (*pipeline*) dibagi menjadi dua *notebook* terpisah sebelum data akhirnya digabungkan:
+1. **Notebook Empathetic Counseling:** Berfokus pada pengumpulan, pembersihan, dan pemrosesan awal dari dataset dialog konseling.
+2. **Notebook Emotion Label:** Berfokus pada proses penentuan pelabelan emosi menggunakan pendekatan leksikon (*lexicon-based*) dan kalkulasi *Healing Score*.
 
-## 🛠️ Library yang Digunakan
-Proses pengolahan data menggunakan beberapa library utama, yang meliputi `pandas`, `numpy`, `re` (untuk teks preprocessing), `matplotlib`, `wordcloud`, `collections.Counter`, dan `datasets`.
+## DATA WRANGLING
+Proses ini mencakup pengumpulan dataset sekunder dari berbagai sumber publik yang kredibel (seperti Hugging Face, Kaggle, dan Google Research). Data mentah ini terdiri dari teks percakapan konseling, curhatan (*ranting*), dan ekspresi emosi yang kemudian disatukan ke dalam satu format kerangka data (DataFrame).
 
-## 🔍 Metodologi Pengembangan
-Pengembangan dataset dikerjakan melalui dua notebook terpisah, yaitu Notebook Empathetic Counseling dan Notebook Emotion Label, untuk efisiensi komputasi sebelum akhirnya digabungkan. Tahapan utamanya meliputi:
-- **Data Wrangling**: Mengumpulkan dataset emosi dari sumber publik seperti Hugging Face, Kaggle, dan Google Research.
-- **Cleaning & Filtering**: Melakukan lowercase, menghapus URL, expand contractions, menghapus karakter non-alfabet, serta memfilter data menggunakan pendekatan keyword-based breakup score (contoh kata kunci: boyfriend, relationship, breakup) agar relevan dengan konteks putus cinta.
-- **Feature Engineering (Emotion Lexicon)**: Mengekstrak fitur emosi dengan mengelompokkan kata ke dalam kategori Anger, Anxiety, dan Acceptance beserta bobotnya. Hal ini digunakan untuk menghitung probabilitas emosi dan menentukan label prediksi dengan batas confidence 0.34.
-- **Healing Score Calculation**: Menghitung tingkat pemulihan emosional pengguna dengan mengukur keseimbangan antara emosi positif dan negatif, menggunakan formula konseptual:
-``` healing_score = acceptance_prob - ((anger_prob + anxiety_prob) / 2) ```
+## CLEANING DATASET
+Tahapan krusial untuk memastikan model AI belajar dari data yang berkualitas:
+* **Text Preprocessing Dasar:** Mengubah seluruh teks menjadi *lowercase*, menghapus tautan (URL), melakukan *expand contractions* (misal: *don't* menjadi *do not*), dan menghapus karakter non-alfabet.
+* **Context Filtering (Breakup Score):** Menyaring dataset ekstensif dengan teknik *keyword-based* (contoh kata kunci: *boyfriend, relationship, breakup, hurt*). Teks yang tidak memenuhi batas minimum *score* relevansi putus cinta akan dibuang agar konteks data tetap spesifik.
 
-## 📊 Key Insights (EDA)
-Berdasarkan hasil visualisasi dan eksplorasi data:
-- Kategori Anger mendominasi dataset dengan persentase sebesar 49,9% (2.884 teks). Emosi ini sering dikaitkan dengan kata-kata seperti hurt, rejected, dan betrayed.
-- Kategori Anxiety menempati posisi kedua dengan persentase 31,0% (1.788 teks). Kategori ini sangat mencerminkan rasa kesepian dengan kemunculan kata dominan seperti lonely dan unloved.
-- Kategori Acceptance memiliki porsi terkecil yaitu 19,1% (1.102 teks). Fase penerimaan ini ditandai dengan kata-kata yang berorientasi pada pemulihan diri seperti healing, better, dan myself.
+## EDA DAN VISUALIZATION
+Mengeksplorasi dan mengekstrak fitur emosi (*Anger, Anxiety, Acceptance*) beserta bobot probabilitasnya. Dari visualisasi (seperti *Pie Chart* dan *Wordcloud*), diperoleh *insight* berikut:
+* **Anger (49,9% | 2.884 teks):** Mendominasi dataset. Kata yang paling sering muncul antara lain *hurt, rejected, betrayed*.
+* **Anxiety (31,0% | 1.788 teks):** Mencerminkan rasa kesepian dan kekhawatiran dengan kemunculan kata seperti *lonely, unloved*.
+* **Acceptance (19,1% | 1.102 teks):** Fase pemulihan dengan kata-kata orientasi perbaikan diri seperti *healing, better, myself*.
+* **Healing Score Logic:** Tingkat pemulihan dihitung dari keseimbangan emosi positif dan negatif menggunakan formula konseptual:
+  `healing_score = acceptance_prob - ((anger_prob + anxiety_prob) / 2)`
+
+## EXPORT DATASET
+Setelah seluruh teks bersih, dilabeli dengan kategori emosi (dengan batas *confidence* 0.34), dan dihitung *Healing Score*-nya, dataset hasil akhir (*Merged*) diekspor ke dalam format `.xlsx` dan `.csv`. Data terstruktur ini adalah produk akhir yang siap disuntikkan ke proses *Machine Learning Training* dan *Dashboard Streamlit*.
+
+## Kesimpulan
+Tim Data Science telah berhasil membangun dan mengkurasi dataset spesifik untuk konteks *post-breakup recovery*. Melalui otomatisasi pelabelan *lexicon-based* dan penyaringan kata kunci, dataset yang dihasilkan memiliki relevansi konteks yang sangat tinggi. Perumusan metrik *Healing Score* juga terbukti selaras dengan distribusi emosi (dari fase marah, cemas, hingga penerimaan), menjadikan dataset ini pondasi yang sangat ideal untuk membangun kecerdasan HealMate AI.
