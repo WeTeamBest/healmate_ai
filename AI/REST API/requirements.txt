@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+tensorflow
+transformers
+numpy
+scikit-learn
+pandas
+tf_keras
+deep-translator
+google-generativeai
+python-dotenv
