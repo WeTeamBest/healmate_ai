@@ -22,7 +22,6 @@ ENV/
 # 2. Logs, Testing & Jupyter
 # =========================
 *.log
-logs/
 .ipynb_checkpoints/
 .pytest_cache/
 .coverage
@@ -49,7 +48,7 @@ Thumbs.db
 *.db
 
 # =========================
-# 5. Frontend & Backend (FS)
+# 5. Frontend & Backend
 # =========================
 node_modules/
 .vscode/settings.json
@@ -60,7 +59,6 @@ node_modules/
 /sample/
 /docs/
 PROGRES.md
-README.md
 
 # =========================
 # 7. AI Models & Data Artifacts (BLOKIR SEMUA)
@@ -70,33 +68,25 @@ README.md
 *.pt
 *.pth
 *.onnx
-*.pb
 *.keras
 *.pkl
-models/
-saved_model/
-AI/**/models/
-AI/**/saved_model/
 
-# Folder eksperimen spesifik yang diblokir
-AI/eksperimen2/farizky/logs/
-AI/eksperimen2/farizky/models/
-AI/eksperimen2/farizky/saved_model/
-AI/eksperimen2/farizky/results/all_models/
-AI/eksperimen2/farizky/trash/
-AI/eksperimen2/trash/
+# Blokir hasil training yang tidak perlu
+AI/Main/results/all_models/
 
 # =========================
 # 8. PENGECUALIAN (YANG BOLEH DI-PUSH)
 # =========================
-# Tanda seru (!) artinya mengizinkan folder/file ini masuk Git
-# Izinkan folder best_model dan seluruh isinya secara rekursif (mengabaikan blokir *.pb)
-!AI/eksperimen2/farizky/results/best_model/
-!AI/eksperimen2/farizky/results/best_model/**
+!.env.example
 
-# Izinkan folder artifacts dan seluruh isinya
-!AI/eksperimen2/farizky/results/artifacts/
-!AI/eksperimen2/farizky/results/artifacts/**
+# Artifacts untuk inference
+!AI/Main/results/artifacts/
+!AI/Main/results/artifacts/**
 
-!**/*best_model*.keras
-!**/artifacts/*.pkl
+# Best model untuk inference
+!AI/Main/results/best_model/
+!AI/Main/results/best_model/**
+
+# TensorBoard logs — wajib ada di repo sesuai aturan
+!AI/Main/results/logs/
+!AI/Main/results/logs/**

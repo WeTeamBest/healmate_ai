@@ -7,28 +7,39 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from preprocessing_noprob import clean_text
 import google.generativeai as genai
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
-# load_dotenv()
-# print(f"[DEBUG] API KEY: {os.getenv('GEMINI_API_KEY', 'TIDAK TERBACA')}")
+load_dotenv()
+print(f"[DEBUG] API KEY: {os.getenv('GEMINI_API_KEY', 'TIDAK TERBACA')}")
 
 MAX_LENGTH = 200
 
 # ── Konfigurasi Gemini ──────────────────────────────────────
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AQ.Ab8RN6LWjb9nVbt1pYqx6KNTLymv5Fu907YVzCIhyErCnpMuH")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
+# Beri peringatan keras jika API Key tidak terbaca dari .env
+if not GEMINI_API_KEY:
+    raise ValueError("GEMINI_API_KEY tidak ditemukan! Pastikan file .env sudah ada dan formatnya benar.")
+
 genai.configure(api_key=GEMINI_API_KEY)
-gemini_model = genai.GenerativeModel("gemini-2.0-flash")
+gemini_model = genai.GenerativeModel("gemini-3.1-flash-lite")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-with open(os.path.join(BASE_DIR, "results", "artifacts", "tokenizer.pkl"), "rb") as f:
+# Arahkan path keluar dari 'REST API' (..), lalu masuk ke 'AI/Main/results'
+RESULTS_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "Main", "results"))
+
+print(f"[DEBUG] Memuat artifacts dari: {RESULTS_DIR}")
+
+# Load Tokenizer & Label Encoder
+with open(os.path.join(RESULTS_DIR, "artifacts", "tokenizer.pkl"), "rb") as f:
     tokenizer = pickle.load(f)
 
-with open(os.path.join(BASE_DIR, "results", "artifacts", "label_encoder.pkl"), "rb") as f:
+with open(os.path.join(RESULTS_DIR, "artifacts", "label_encoder.pkl"), "rb") as f:
     le = pickle.load(f)
 
-# SavedModel load dari foldernya, bukan file .pb langsung
-model = tf.saved_model.load(os.path.join(BASE_DIR, "results", "best_model"))
+# SavedModel load dari folder best_model
+model = tf.saved_model.load(os.path.join(RESULTS_DIR, "best_model"))
 infer = model.signatures["serving_default"]
 
 
