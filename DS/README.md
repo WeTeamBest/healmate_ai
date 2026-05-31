@@ -15,6 +15,30 @@ Dalam proses pengolahan data, berbagai library Python digunakan untuk efisiensi 
 Untuk mengoptimalkan efisiensi komputasi dan memori, proses pengembangan (*pipeline*) dibagi menjadi dua *notebook* terpisah sebelum data akhirnya digabungkan:
 1. **Notebook Empathetic Counseling:** Berfokus pada pengumpulan, pembersihan, dan pemrosesan awal dari dataset dialog konseling.
 2. **Notebook Emotion Label:** Berfokus pada proses penentuan pelabelan emosi menggunakan pendekatan leksikon (*lexicon-based*) dan kalkulasi *Healing Score*.
+```text
+/DS
+│
+├── Dashboard Streamlit/
+│   ├── Emotion Dataset Merged (Healing Score).xlsx
+│   ├── README.md
+│   ├── main.py
+│   └── requirements.txt
+├── Emotion Label/
+│   ├── Data Dictionary.md
+│   ├── Emotion Dataset Merged (Healing Score).xlsx
+│   ├── Emotion Dataset Merged.xlsx
+│   ├── Notebook Emotion Label.ipynb
+│   ├── distribusi_emosi.png
+│   ├── preprocessing_noprob.py
+│   ├── wordcloud_acceptance.png
+│   ├── wordcloud_anger.png
+│   └── wordcloud_anxiety.png
+├── Empathetic Counseling Dataset/
+│   ├── Empathetic Counseling.xlsx
+│   ├── Metadata Empathetic Counseling.xlsx
+│   └── Notebook Empathetic Counseling.ipynb
+└── CC26-PSU106 Laporan Teknis Data Scientist.pdf
+```
 
 ## ***Data Wrangling***
 Proses ini mencakup pengumpulan dataset sekunder dari berbagai sumber publik yang kredibel (seperti Hugging Face, Kaggle, dan Google Research). Data mentah ini terdiri dari teks percakapan konseling, curhatan (*ranting*), dan ekspresi emosi yang kemudian disatukan ke dalam satu format kerangka data (DataFrame).
