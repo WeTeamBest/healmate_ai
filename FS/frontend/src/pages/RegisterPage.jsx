@@ -17,6 +17,7 @@ export default function RegisterPage() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    setError('');
   };
 
   const handleSubmit = async (e) => {
@@ -25,13 +26,19 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      if (!formData.email || !formData.username || !formData.password || !formData.fullName) {
-        throw new Error('Semua field harus diisi');
-      }
+      if (!formData.fullName) throw new Error('Nama lengkap wajib diisi');
+      if (!formData.username) throw new Error('Nama panggilan wajib diisi');
+      if (formData.username.length < 3) throw new Error('Nama panggilan minimal 3 karakter');
+      if (!formData.email) throw new Error('Email wajib diisi');
 
-      if (formData.password.length < 6) {
-        throw new Error('Password minimal 6 karakter');
-      }
+      const validateEmail = (email) => {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+      };
+
+      if (!validateEmail(formData.email)) throw new Error('Format email tidak valid');
+      if (!formData.password) throw new Error('Kata sandi wajib diisi');
+      if (formData.password.length < 6) throw new Error('Kata sandi minimal 6 karakter');
 
       await authService.register(
         formData.email,
@@ -40,26 +47,34 @@ export default function RegisterPage() {
         formData.fullName
       );
 
-      // Navigate to login page (don't auto-login)
+      // Setelah berhasil daftar,mengarah ke Login
       navigate('/login');
     } catch (err) {
-      setError(err.message || 'Registration failed');
+      setError(err.message || 'Pendaftaran gagal. Silakan coba lagi.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-dark to-primary-light flex items-center justify-center p-4">
-      <Card className="w-full max-w-md">
-        <div className="text-center mb-6">
-          <h1 className="text-3xl font-bold text-primary-dark mb-2">🌱 HealMate</h1>
-          <p className="text-gray-600">Buat Akun Baru</p>
+    <div className="min-h-screen bg-[#F5F8F8] flex items-center justify-center p-4 relative overflow-hidden py-10">
+      {/* Ornamen Latar Belakang */}
+      <div className="absolute top-[-10%] right-[-10%] w-96 h-96 bg-[#22B2B0] rounded-full blur-[100px] opacity-20"></div>
+      <div className="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-[#113C3A] rounded-full blur-[100px] opacity-20"></div>
+
+      <Card className="w-full max-w-md relative z-10 !rounded-3xl !shadow-xl !border-0 p-8">
+        <div className="text-center mb-8">
+          <div className="bg-[#E8F6F6] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i className="fas fa-heartbeat text-3xl text-[#22B2B0]"></i>
+          </div>
+          <h1 className="text-2xl md:text-3xl font-bold text-[#113C3A] mb-2">Buat Akun</h1>
+          <p className="text-gray-500 text-sm">Langkah pertama untuk memulihkan senyummu.</p>
         </div>
 
         {error && (
-          <div className="mb-4 p-3 bg-red-100 border border-red-500 text-red-700 rounded-lg">
-            {error}
+          <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 text-sm rounded-r-lg flex items-center gap-3">
+            <i className="fas fa-exclamation-circle"></i>
+            <p>{error}</p>
           </div>
         )}
 
@@ -68,17 +83,17 @@ export default function RegisterPage() {
             label="Nama Lengkap"
             type="text"
             name="fullName"
-            placeholder="John Doe"
+            placeholder="Ketik nama lengkapmu"
             value={formData.fullName}
             onChange={handleChange}
             disabled={loading}
           />
 
           <Input
-            label="Username"
+            label="Nama Panggilan"
             type="text"
             name="username"
-            placeholder="johndoe"
+            placeholder="Ketik nama panggilanmu"
             value={formData.username}
             onChange={handleChange}
             disabled={loading}
@@ -88,17 +103,17 @@ export default function RegisterPage() {
             label="Email"
             type="email"
             name="email"
-            placeholder="john@example.com"
+            placeholder="nama@email.com"
             value={formData.email}
             onChange={handleChange}
             disabled={loading}
           />
 
           <Input
-            label="Password"
+            label="Kata Sandi"
             type="password"
             name="password"
-            placeholder="••••••••"
+            placeholder="Minimal 6 karakter"
             value={formData.password}
             onChange={handleChange}
             disabled={loading}
@@ -106,18 +121,23 @@ export default function RegisterPage() {
 
           <Button
             type="submit"
-            variant="primary"
             disabled={loading}
-            className="w-full"
+            className="w-full bg-[#113C3A] hover:bg-[#0A2625] text-white py-3 mt-4 rounded-xl shadow-md transition-all active:scale-[0.98]"
           >
-            {loading ? 'Mendaftar...' : 'Daftar'}
+            {loading ? (
+              <span className="flex items-center justify-center gap-2">
+                <i className="fas fa-circle-notch fa-spin"></i> Mendaftarkan...
+              </span>
+            ) : (
+              'Daftar Sekarang'
+            )}
           </Button>
         </form>
 
-        <div className="mt-6 text-center text-sm text-gray-600">
-          Sudah punya akun?{' '}
-          <Link to="/login" className="text-primary-light hover:underline font-semibold">
-            Login di sini
+        <div className="mt-8 text-center text-sm text-gray-500">
+          Sudah memiliki akun?{' '}
+          <Link to="/login" className="text-[#113C3A] hover:text-[#22B2B0] font-bold transition-colors">
+            Masuk di sini
           </Link>
         </div>
       </Card>

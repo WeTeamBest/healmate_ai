@@ -1,0 +1,73 @@
+cd ~/Documents/healmate_ai_fs/FS
+
+cat > .gitignore << 'EOF'
+# ========== DEPENDENCIES ==========
+node_modules/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+dist-info/
+
+# ========== ENVIRONMENT & SECRETS ==========
+.env
+.env.local
+.env.*.local
+.env.production.local
+.env.development.local
+
+# ========== IDE & EDITOR ==========
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# ========== BUILD & DIST ==========
+dist/
+build/
+.next/
+out/
+*.bundle.js
+coverage/
+
+# ========== DOCKER ==========
+docker-compose.yml
+docker-compose.override.yml
+.dockerignore
+# Allow Dockerfile in backend-fastapi-full (deployment needed)
+# Dockerfile  ← COMMENT OUT atau hapus
+
+# ========== LOGS & CACHE ==========
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pip-log.txt
+*.log
+.cache/
+tmp/
+temp/
+
+# ========== OS FILES ==========
+Thumbs.db
+.DS_Store
+._*
+
+# ========== PROJECT SPECIFIC ==========
+sample/
+*.md
+projectplan.md
+roadmap_dev.md
+
+# ========== OPTIONAL ==========
+.turbo/
+.vercel/
+.render/
+.env.example
+EOF
+sample/
