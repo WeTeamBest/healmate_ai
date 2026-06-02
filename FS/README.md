@@ -1,6 +1,6 @@
-# 🏥 HealMate AI - Platform Konseling Emosi Berbasis AI
+# HealMate AI - AI Healing Partner untuk Perjalanan Pemulihan Emotionalmu
 
-Aplikasi web untuk membantu orang yang sedang pulih dari putus cinta. Lengkap dengan fitur chat dengan AI konselor, tracking mood harian, setting goals pemulihan, dan time capsule (tulis pesan untuk diri sendiri di masa depan).
+Aplikasi web untuk membantu orang yang sedang pulih dari putus cinta. Lengkap dengan fitur chat dengan AI Partner, tracking mood harian, setting goals pemulihan, dan time capsule (tulis pesan untuk diri sendiri di masa depan).
 
 ---
 
@@ -122,7 +122,7 @@ MONGODB_URI=mongodb://localhost:27017/healmate
 
 
 # ════════════════════════════════════════════════════════════
-# 🤖 GEMINI API - Untuk AI Konselor
+# GEMINI API - Untuk AI Partner
 # ════════════════════════════════════════════════════════════
 
 # Dapatkan API key di: https://ai.google.dev
@@ -177,7 +177,7 @@ LOG_LEVEL=INFO
 
 ## 📱 Fitur Utama
 
-### 1. Chat dengan AI Konselor 💬
+### 1. Chat dengan AI Partner 💬
 Ketik keluh kesahmu, dan AI akan balik dengan jawaban yang empatik dan supportif. Dilengkapi dengan emotion detection otomatis yang mengenali emosi kamu (anxiety, anger, acceptance) dan memberikan saran aktivitas healing yang personal.
 
 ### 2. Mood Tracking 📊
@@ -414,4 +414,4 @@ Butuh bantuan lebih lanjut?
 
 ---
 
-Good luck! Semoga project kamu lancar 🚀
+Good luck!
