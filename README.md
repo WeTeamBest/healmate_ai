@@ -92,23 +92,90 @@ https://github.com/WeTeamBest/healmate_ai/blob/main/FS/README.md
 
 ---
 
-## 🧠 Pretrained Models
+## 🧠 Pretrained Models & Training Results
 
-Model hasil training dapat diakses melalui Google Drive berikut:
+Seluruh hasil pelatihan model, artefak pendukung, dan file deployment dapat diakses melalui Google Drive berikut:
 
+**Google Drive Repository**
 https://drive.google.com/drive/folders/1pOXsuKTONGsMbtgRi8e4G2EUs4zMjsw-
 
-Model yang tersedia meliputi:
+### 📦 Contents
 
-* BERT
+Folder ini berisi berbagai hasil pengembangan dan pelatihan model yang digunakan pada HealMate AI, antara lain:
+
+#### 🤖 Trained Models
+
+Model deep learning yang telah dilatih untuk melakukan:
+
+* Emotion Classification (Anxiety, Anger, Acceptance)
+* Healing Score Prediction
+
+Arsitektur yang tersedia meliputi:
+
 * LSTM
 * GRU
 * CNN
 * BiLSTM
 * BiGRU
-* Tokenizer
-* Label Encoder
-* SavedModel Deployment Files
+* BERT
+
+#### 🏆 Best Model
+
+Folder `best_model/` berisi model terbaik hasil evaluasi yang telah diekspor dalam format TensorFlow SavedModel dan siap digunakan untuk deployment maupun integrasi dengan REST API.
+
+File utama:
+
+* `saved_model.pb`
+* `variables/`
+* `fingerprint.pb`
+
+#### 🔧 Model Artifacts
+
+Folder `artifacts/` berisi komponen yang diperlukan saat proses inferensi:
+
+* `tokenizer.pkl` → Tokenizer untuk preprocessing teks
+* `label_encoder.pkl` → Encoder label emosi
+* `eval_results.json` → Hasil evaluasi seluruh model
+* Metadata pemilihan model terbaik
+
+#### 📊 Training Logs
+
+Folder `logs/` berisi TensorBoard logs dari seluruh proses training dan validasi model:
+
+* LSTM
+* GRU
+* CNN
+* BiLSTM
+* BiGRU
+* BERT
+
+Log ini dapat digunakan untuk:
+
+* Analisis performa training
+* Monitoring loss dan accuracy
+* Evaluasi potensi overfitting
+* Perbandingan antar model
+
+### 📈 Model Performance Summary
+
+| Model  | Accuracy   | F1 Macro   | MAE Healing Score |
+| ------ | ---------- | ---------- | ----------------- |
+| LSTM   | 35.26%     | 17.38%     | 0.227             |
+| GRU    | 47.27%     | 21.40%     | 0.233             |
+| CNN    | **94.38%** | **93.51%** | 0.138             |
+| BiLSTM | 92.82%     | 91.71%     | 0.116             |
+| BiGRU  | 94.38%     | 93.36%     | **0.110**         |
+| BERT   | 72.54%     | 69.50%     | 0.191             |
+
+### 🏅 Selected Production Model
+
+Berdasarkan hasil evaluasi, model **CNN** dipilih sebagai model utama untuk deployment karena memperoleh:
+
+* Accuracy : **94.38%**
+* F1 Macro : **93.51%**
+* MAE Healing Score : **0.138**
+
+Model ini digunakan sebagai dasar sistem prediksi emosi dan perhitungan Healing Score pada HealMate AI.
 
 ---
 
