@@ -50,7 +50,7 @@ Tim AI membangun sistem deteksi emosi berbasis Deep Learning yang mampu mengiden
 ```text
 HealMate-AI/
 │
-├── AI/                         # LLM Integration
+├── AI/                         # AI System
 │   ├── dataset/
 │   ├── Main/
 │   ├── inference/
@@ -136,7 +136,6 @@ Folder `artifacts/` berisi komponen yang diperlukan saat proses inferensi:
 * `tokenizer.pkl` → Tokenizer untuk preprocessing teks
 * `label_encoder.pkl` → Encoder label emosi
 * `eval_results.json` → Hasil evaluasi seluruh model
-* Metadata pemilihan model terbaik
 
 #### 📊 Training Logs
 
