@@ -278,7 +278,6 @@ http://localhost:8000/docs
 ```
 
 ---
----
 
 # 💻 Full Stack Application Installation & Setup
 
