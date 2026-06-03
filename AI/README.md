@@ -136,40 +136,41 @@ healmate_ai/
 
 #### D. **Custom Layers**
 
-| Class | Deskripsi |
-|-------|-----------|
-| `CustomEmbeddingLayer` | Embedding layer dengan padding mask otomatis — token 0 di-mask sehingga tidak berkontribusi ke representasi |
-| `CustomDenseLayer` | Dense layer dengan Dropout terintegrasi; mendukung konfigurasi `units`, `activation`, dan `dropout_rate` |
-| `CustomConv1DLayer` | Conv1D layer dengan BatchNormalization + Dropout terintegrasi; digunakan pada model CNN |
-| `AttentionLayer` | Self-attention sederhana berbasis query-key-value; digunakan pada BiLSTM dan BiGRU untuk menangkap konteks penting |
+| Class                  | Deskripsi                                                                                                          |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `CustomEmbeddingLayer` | Embedding layer dengan padding mask otomatis — token 0 di-mask sehingga tidak berkontribusi ke representasi        |
+| `CustomDenseLayer`     | Dense layer dengan Dropout terintegrasi; mendukung konfigurasi `units`, `activation`, dan `dropout_rate`           |
+| `CustomConv1DLayer`    | Conv1D layer dengan BatchNormalization + Dropout terintegrasi; digunakan pada model CNN                            |
+| `AttentionLayer`       | Self-attention sederhana berbasis query-key-value; digunakan pada BiLSTM dan BiGRU untuk menangkap konteks penting |
 
 #### E. **Custom Loss Functions**
 
-| Class | Deskripsi |
-|-------|-----------|
+| Class                | Deskripsi                                                                                                             |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | `CustomLossFunction` | Categorical cross-entropy dengan **label smoothing** (default `smoothing=0.1`) untuk mencegah model terlalu confident |
-| `MultiOutputLoss` | Gabungan dua loss: `CustomLossFunction` (emosi, bobot 0.7) + `Huber Loss` (healing score, bobot 0.3, `delta=0.5`) |
+| `MultiOutputLoss`    | Gabungan dua loss: `CustomLossFunction` (emosi, bobot 0.7) + `Huber Loss` (healing score, bobot 0.3, `delta=0.5`)     |
 
 #### F. **Custom Callbacks**
 
-| Class | Deskripsi |
-|-------|-----------|
-| `CustomEarlyStopping` | Hentikan training jika `val_loss` tidak membaik selama `patience` epoch; mendukung `restore_best_weights` |
-| `StopAtAccuracy` | Hentikan training jika `val_accuracy` mencapai target tertentu (default 0.90) |
-| `CustomModelCheckpoint` | Simpan model ke file `.keras` hanya jika metric (default `val_loss`) membaik |
-| `CustomTensorBoard` | Ekstensi TensorBoard callback dengan kustomisasi log per model |
-| `OverfittingDetector` | Deteksi overfitting saat selisih `train_loss` dan `val_loss` melebihi `threshold` (default 0.15) |
-| `TrainingSummaryLogger` | Log ringkasan metrik di akhir setiap epoch ke console |
+| Class                         | Deskripsi                                                                                                    |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `CustomEarlyStopping`         | Hentikan training jika `val_loss` tidak membaik selama `patience` epoch; mendukung `restore_best_weights`    |
+| `StopAtAccuracy`              | Hentikan training jika `val_accuracy` mencapai target tertentu (default 0.90)                                |
+| `CustomModelCheckpoint`       | Simpan model ke file `.keras` hanya jika metric (default `val_loss`) membaik                                 |
+| `CustomTensorBoard`           | Ekstensi TensorBoard callback dengan kustomisasi log per model                                               |
+| `OverfittingDetector`         | Deteksi overfitting saat selisih `train_loss` dan `val_loss` melebihi `threshold` (default 0.15)             |
+| `TrainingSummaryLogger`       | Log ringkasan metrik di akhir setiap epoch ke console                                                        |
 | `CustomLearningRateScheduler` | Reduce LR on plateau — turunkan learning rate sebesar `factor` jika val_loss stagnan selama `patience` epoch |
 
 #### G. **Custom Training Loop**
 
-| Class | Deskripsi |
-|-------|-----------|
+| Class                | Deskripsi                                                                                                                        |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | `customTrainingLoop` | Training loop manual berbasis `tf.GradientTape` untuk model non-BERT; mendukung class weight, callbacks, dan TensorBoard logging |
-| `CustomTrainerBERT` | Varian training loop khusus BERT; menerima input dict (`input_ids`, `attention_mask`, `token_type_ids`) |
+| `CustomTrainerBERT`  | Varian training loop khusus BERT; menerima input dict (`input_ids`, `attention_mask`, `token_type_ids`)                          |
 
 Kedua trainer memiliki method:
+
 - `.fit(train_ds, val_ds, epochs)` — jalankan training
 - `.evaluate(test_ds, y_test, yh_test, le)` — hitung accuracy, F1, dan MAE
 - `.plot_history()` — visualisasi kurva loss dan accuracy
@@ -177,17 +178,18 @@ Kedua trainer memiliki method:
 #### H. **Model Training**
 
 Semua model menggunakan arsitektur **multi-output**:
+
 - Output 1: klasifikasi emosi (softmax, 3 kelas)
 - Output 2: regresi healing score (sigmoid/linear, 1 nilai)
 
-| Model  | Arsitektur Utama                        |
-|--------|-----------------------------------------|
-| LSTM   | Embedding → LSTM → Dense               |
-| GRU    | Embedding → GRU → Dense                |
+| Model  | Arsitektur Utama                           |
+| ------ | ------------------------------------------ |
+| LSTM   | Embedding → LSTM → Dense                   |
+| GRU    | Embedding → GRU → Dense                    |
 | CNN    | Embedding → Conv1D → GlobalMaxPool → Dense |
-| BiLSTM | Embedding → Bidirectional LSTM → Dense |
-| BiGRU  | Embedding → Bidirectional GRU → Dense  |
-| BERT   | IndoBERT → Custom Head → Dense         |
+| BiLSTM | Embedding → Bidirectional LSTM → Dense     |
+| BiGRU  | Embedding → Bidirectional GRU → Dense      |
+| BERT   | IndoBERT → Custom Head → Dense             |
 
 #### I. **Evaluasi & Pemilihan Model Terbaik**
 
@@ -223,6 +225,7 @@ predict(text) → dict
 ```
 
 Alur prediksi:
+
 1. Terjemahkan teks ke Bahasa Inggris (Google Translate)
 2. Preprocessing teks (`clean_text`)
 3. Tokenisasi + padding → tensor
@@ -264,17 +267,19 @@ test_sentences = [
 
 **Endpoint**:
 
-| Method | Path       | Deskripsi                        |
-|--------|------------|----------------------------------|
-| GET    | `/`        | Health check API                 |
-| POST   | `/predict` | Prediksi emosi + healing score   |
+| Method | Path       | Deskripsi                      |
+| ------ | ---------- | ------------------------------ |
+| GET    | `/`        | Health check API               |
+| POST   | `/predict` | Prediksi emosi + healing score |
 
 **Request**:
+
 ```json
 { "text": "Aku masih nggak bisa ngerti kenapa dia pergi" }
 ```
 
 **Response**:
+
 ```json
 {
   "emotion": "anxiety",
@@ -324,6 +329,7 @@ cp "AI/REST API/.env-example" "AI/REST API/.env"
 ```
 
 Isi file `.env`:
+
 ```
 GEMINI_API_KEY=your_gemini_api_key_here
 ```
@@ -338,22 +344,24 @@ GEMINI_API_KEY=your_gemini_api_key_here
 #### ⚠️ Perhatian Versi Model Gemini
 
 File `predictor.py` saat ini menggunakan:
+
 ```python
 gemini_model = genai.GenerativeModel("gemini-3.1-flash-lite")
 ```
 
 > **`gemini-3.1-flash-lite` adalah nama model eksperimental/preview** yang mungkin tidak tersedia di semua region atau tier API. Jika saat menjalankan muncul error seperti `404 models/gemini-3.1-flash-lite is not found` atau `invalid model`, ganti dengan model yang tersedia:
 
-| Model | Catatan |
-|-------|---------|
+| Model                   | Catatan                                         |
+| ----------------------- | ----------------------------------------------- |
 | `gemini-2.0-flash-lite` | Ringan & cepat, direkomendasikan untuk produksi |
-| `gemini-2.0-flash` | Lebih kapabel, masih efisien |
-| `gemini-1.5-flash` | Stabil, latensi rendah |
-| `gemini-1.5-pro` | Paling kapabel, lebih lambat |
+| `gemini-2.0-flash`      | Lebih kapabel, masih efisien                    |
+| `gemini-1.5-flash`      | Stabil, latensi rendah                          |
+| `gemini-1.5-pro`        | Paling kapabel, lebih lambat                    |
 
 Cek model yang aktif tersedia di akunmu: [https://aistudio.google.com/](https://aistudio.google.com/)
 
 Cara mengganti model di `predictor.py`:
+
 ```python
 # Ganti baris ini:
 gemini_model = genai.GenerativeModel("gemini-3.1-flash-lite")
@@ -372,12 +380,12 @@ Hal yang sama berlaku di `inference.ipynb` jika kamu menggunakan Gemini di sana.
 
 ```
 tensorflow          # Deep learning framework
-transformers        # BERT (IndoBERT)
+transformers        # BERT
 scikit-learn        # LabelEncoder, metrics
 pandas / numpy      # Data manipulation
 matplotlib / seaborn # Visualisasi
 deep-translator     # Google Translate (inference)
-google-generativeai # Gemini AI integration
+google-generativeai # Gemini AI integration (LLM)
 fastapi / uvicorn   # REST API
 python-dotenv       # Environment variables
 ```
@@ -418,28 +426,29 @@ API tersedia di `http://localhost:8000`. Dokumentasi otomatis di `http://localho
 ### Arsitektur Model
 
 Semua model menggunakan pendekatan **multi-task learning** dengan dua output:
+
 - **Output emosi**: klasifikasi 3 kelas (softmax)
 - **Output healing**: regresi skor pemulihan (1 nilai)
 
 ### Target Performa
 
-| Metrik         | Target   |
-|----------------|----------|
-| Accuracy       | ≥ 0.85   |
-| F1 Macro       | ≥ 0.85   |
-| F1 Weighted    | ≥ 0.85   |
-| MAE Healing    | ≤ 0.20   |
+| Metrik      | Target |
+| ----------- | ------ |
+| Accuracy    | ≥ 0.85 |
+| F1 Macro    | ≥ 0.85 |
+| F1 Weighted | ≥ 0.85 |
+| MAE Healing | ≤ 0.20 |
 
 ### Hyperparameter Global
 
-| Parameter    | Nilai  |
-|--------------|--------|
-| NUM_WORDS    | 10.000 |
-| MAX_LENGTH   | 200    |
-| EMBED_DIM    | 128    |
-| EPOCH        | 50     |
-| BATCH_SIZE   | 32     |
-| RANDOM_SEED  | 42     |
+| Parameter   | Nilai  |
+| ----------- | ------ |
+| NUM_WORDS   | 10.000 |
+| MAX_LENGTH  | 200    |
+| EMBED_DIM   | 128    |
+| EPOCH       | 50     |
+| BATCH_SIZE  | 32     |
+| RANDOM_SEED | 42     |
 
 ---
 
@@ -452,7 +461,7 @@ Semua model menggunakan pendekatan **multi-task learning** dengan dua output:
 ✅ **Gemini Integration**: Respons konselor & saran aktivitas yang dipersonalisasi  
 ✅ **SavedModel Export**: Model diekspor ke format SavedModel untuk produksi  
 ✅ **REST API**: FastAPI endpoint siap deploy  
-✅ **TensorBoard**: Logging training semua model  
+✅ **TensorBoard**: Logging training semua model
 
 ---
 
@@ -461,9 +470,11 @@ Semua model menggunakan pendekatan **multi-task learning** dengan dua output:
 ### GEMINI_API_KEY tidak terbaca
 
 Pastikan path `.env` benar. Inference notebook membaca dari:
+
 ```
 AI/REST API/.env
 ```
+
 Bukan dari folder notebook itu sendiri.
 
 ### Error `404 model not found` pada Gemini
@@ -473,6 +484,7 @@ Model `gemini-3.1-flash-lite` di `predictor.py` adalah model preview yang tidak 
 ### Model output tidak teridentifikasi
 
 Fungsi `predict()` mendeteksi output secara otomatis berdasarkan shape tensor:
+
 - Shape `[batch, n_classes]` → output emosi
 - Shape `[batch, 1]` → output healing score
 
