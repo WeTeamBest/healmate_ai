@@ -219,7 +219,7 @@ Model ini digunakan sebagai dasar sistem prediksi emosi dan perhitungan Healing 
 
 ---
 
-## 🛠️ Installation & Setup
+## 🛠️ AI Installation & Setup
 
 ### Prerequisites
 
@@ -276,6 +276,161 @@ Swagger Documentation:
 ```text
 http://localhost:8000/docs
 ```
+
+---
+---
+
+# 💻 Full Stack Application Installation & Setup
+
+## Yang Dibutuhkan
+
+* Git
+* Python 3.9+
+* Node.js 18+
+
+---
+
+### Langkah 1: Clone Repository
+
+```bash
+git clone https://github.com/WeTeamBest/healmate_ai.git
+cd healmate_ai/FS
+```
+
+---
+
+### Langkah 2: Setup Backend (Terminal 1)
+
+**Buka Terminal 1:**
+
+```bash
+cd backend-fastapi-full
+
+# Setup Python environment
+python3 -m venv venv
+source venv/bin/activate  # atau: venv\Scripts\activate (Windows)
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Copy & edit .env
+cp .env.example .env
+```
+
+Isi file `.env`:
+
+```env
+MONGODB_URI=mongodb://localhost:27017/healmate
+# atau cloud: mongodb+srv://user:pass@cluster.mongodb.net/healmate
+
+GEMINI_API_KEY=AIzaSy...your_key...
+# dari https://aistudio.google.com/apikey
+
+JWT_SECRET=your_secret_key
+
+AI_URL=http://localhost:5000
+# Model AI URL - PENTING!
+```
+
+Jalankan Backend:
+
+```bash
+uvicorn main:app --reload --port 8000
+```
+
+**Expected Output**
+
+```text
+INFO:     Uvicorn running on http://127.0.0.1:8000
+✅ Backend ready!
+```
+
+⚠️ Jangan menutup terminal ini karena backend harus tetap berjalan.
+
+---
+
+### Langkah 3: Setup Frontend (Terminal 2)
+
+**Buka Terminal Baru (jangan menutup Terminal 1)**
+
+```bash
+cd frontend
+
+# Install dependencies
+npm install
+
+# Copy & edit .env
+cp .env.example .env
+```
+
+Isi file `.env`:
+
+```env
+VITE_API_URL=http://localhost:8000
+```
+
+Jalankan Frontend:
+
+```bash
+npm run dev
+```
+
+**Expected Output**
+
+```text
+VITE v5.0.0 ready in 122 ms
+➜ Local: http://localhost:5173/
+```
+
+⚠️ Jangan menutup terminal ini karena frontend harus tetap berjalan.
+
+---
+
+## 📋 Environment Configuration
+
+### Backend (`backend-fastapi-full/.env`)
+
+```env
+MONGODB_URI=mongodb://localhost:27017/healmate
+
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+
+JWT_SECRET=YOUR_SECRET_KEY
+
+AI_URL=http://localhost:5000
+```
+
+### Frontend (`frontend/.env`)
+
+```env
+VITE_API_URL=http://localhost:8000
+```
+
+---
+
+## 🌐 Application Access
+
+| Service           | URL                        |
+| ----------------- | -------------------------- |
+| Frontend          | http://localhost:5173      |
+| Backend API       | http://localhost:8000      |
+| API Documentation | http://localhost:8000/docs |
+
+---
+
+## ✅ Application Ready
+
+Setelah Frontend, Backend, dan AI Service berjalan dengan baik, HealMate AI siap digunakan untuk:
+
+* AI Emotional Counseling Chat
+* Mood Tracking & Emotional Monitoring
+* Goal Management
+* Time Capsule
+* Emotion Detection
+* Healing Score Prediction
+* Gemini AI Integration
+* Personal Recovery Dashboard
+* User Authentication & Management
 
 ---
 
