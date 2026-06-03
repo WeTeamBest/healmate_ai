@@ -1,4 +1,4 @@
-# 🏥 HealMate AI – AI-Powered Emotional Recovery Platform
+# 🏥 HealMate AI – Emotional Recovery Platform
 
 ## 📋 Project Overview
 
