@@ -1,6 +1,6 @@
 # 📋 Project Overview
 
-## HealMate AI – AI-Powered Emotional Recovery Platform
+## HealMate AI – AI Powered Emotional Recovery Platform
 
 HealMate AI adalah platform berbasis web yang dirancang untuk membantu individu dalam proses pemulihan emosional melalui dukungan teknologi kecerdasan buatan. Platform ini menyediakan ruang yang aman bagi pengguna untuk mengekspresikan perasaan, memantau perkembangan kondisi emosional, serta membangun kebiasaan positif selama proses pemulihan.
 
