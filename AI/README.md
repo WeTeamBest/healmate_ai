@@ -136,10 +136,45 @@ healmate_ai/
 
 #### D. **Custom Layers**
 
-- `CustomEmbeddingLayer`: embedding dengan masking token padding
-- `CustomDenseLayer`: dense dengan dropout terintegrasi
+| Class | Deskripsi |
+|-------|-----------|
+| `CustomEmbeddingLayer` | Embedding layer dengan padding mask otomatis — token 0 di-mask sehingga tidak berkontribusi ke representasi |
+| `CustomDenseLayer` | Dense layer dengan Dropout terintegrasi; mendukung konfigurasi `units`, `activation`, dan `dropout_rate` |
+| `CustomConv1DLayer` | Conv1D layer dengan BatchNormalization + Dropout terintegrasi; digunakan pada model CNN |
+| `AttentionLayer` | Self-attention sederhana berbasis query-key-value; digunakan pada BiLSTM dan BiGRU untuk menangkap konteks penting |
 
-#### E. **Model Training**
+#### E. **Custom Loss Functions**
+
+| Class | Deskripsi |
+|-------|-----------|
+| `CustomLossFunction` | Categorical cross-entropy dengan **label smoothing** (default `smoothing=0.1`) untuk mencegah model terlalu confident |
+| `MultiOutputLoss` | Gabungan dua loss: `CustomLossFunction` (emosi, bobot 0.7) + `Huber Loss` (healing score, bobot 0.3, `delta=0.5`) |
+
+#### F. **Custom Callbacks**
+
+| Class | Deskripsi |
+|-------|-----------|
+| `CustomEarlyStopping` | Hentikan training jika `val_loss` tidak membaik selama `patience` epoch; mendukung `restore_best_weights` |
+| `StopAtAccuracy` | Hentikan training jika `val_accuracy` mencapai target tertentu (default 0.90) |
+| `CustomModelCheckpoint` | Simpan model ke file `.keras` hanya jika metric (default `val_loss`) membaik |
+| `CustomTensorBoard` | Ekstensi TensorBoard callback dengan kustomisasi log per model |
+| `OverfittingDetector` | Deteksi overfitting saat selisih `train_loss` dan `val_loss` melebihi `threshold` (default 0.15) |
+| `TrainingSummaryLogger` | Log ringkasan metrik di akhir setiap epoch ke console |
+| `CustomLearningRateScheduler` | Reduce LR on plateau — turunkan learning rate sebesar `factor` jika val_loss stagnan selama `patience` epoch |
+
+#### G. **Custom Training Loop**
+
+| Class | Deskripsi |
+|-------|-----------|
+| `customTrainingLoop` | Training loop manual berbasis `tf.GradientTape` untuk model non-BERT; mendukung class weight, callbacks, dan TensorBoard logging |
+| `CustomTrainerBERT` | Varian training loop khusus BERT; menerima input dict (`input_ids`, `attention_mask`, `token_type_ids`) |
+
+Kedua trainer memiliki method:
+- `.fit(train_ds, val_ds, epochs)` — jalankan training
+- `.evaluate(test_ds, y_test, yh_test, le)` — hitung accuracy, F1, dan MAE
+- `.plot_history()` — visualisasi kurva loss dan accuracy
+
+#### H. **Model Training**
 
 Semua model menggunakan arsitektur **multi-output**:
 - Output 1: klasifikasi emosi (softmax, 3 kelas)
@@ -154,14 +189,14 @@ Semua model menggunakan arsitektur **multi-output**:
 | BiGRU  | Embedding → Bidirectional GRU → Dense  |
 | BERT   | IndoBERT → Custom Head → Dense         |
 
-#### F. **Evaluasi & Pemilihan Model Terbaik**
+#### I. **Evaluasi & Pemilihan Model Terbaik**
 
 - Metrik: accuracy, F1 macro, F1 weighted, MAE healing score
 - Target: accuracy ≥ 0.85, F1 macro ≥ 0.85, MAE healing ≤ 0.2
 - Model terbaik dipilih otomatis berdasarkan F1 macro tertinggi
 - Visualisasi perbandingan 4 metrik antar semua model
 
-#### G. **Penyimpanan Model**
+#### J. **Penyimpanan Model**
 
 - Semua model → `.keras` dan SavedModel format
 - Model terbaik → `results/best_model/` (SavedModel, untuk REST API)
@@ -293,6 +328,44 @@ Isi file `.env`:
 GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
+#### Cara Mendapatkan Gemini API Key
+
+1. Buka [https://aistudio.google.com/apikey](https://aistudio.google.com/apikey)
+2. Login dengan akun Google
+3. Klik **Create API Key** → pilih atau buat project Google Cloud
+4. Salin API key dan paste ke file `.env`
+
+#### ⚠️ Perhatian Versi Model Gemini
+
+File `predictor.py` saat ini menggunakan:
+```python
+gemini_model = genai.GenerativeModel("gemini-3.1-flash-lite")
+```
+
+> **`gemini-3.1-flash-lite` adalah nama model eksperimental/preview** yang mungkin tidak tersedia di semua region atau tier API. Jika saat menjalankan muncul error seperti `404 models/gemini-3.1-flash-lite is not found` atau `invalid model`, ganti dengan model yang tersedia:
+
+| Model | Catatan |
+|-------|---------|
+| `gemini-2.0-flash-lite` | Ringan & cepat, direkomendasikan untuk produksi |
+| `gemini-2.0-flash` | Lebih kapabel, masih efisien |
+| `gemini-1.5-flash` | Stabil, latensi rendah |
+| `gemini-1.5-pro` | Paling kapabel, lebih lambat |
+
+Cek model yang aktif tersedia di akunmu: [https://aistudio.google.com/](https://aistudio.google.com/)
+
+Cara mengganti model di `predictor.py`:
+```python
+# Ganti baris ini:
+gemini_model = genai.GenerativeModel("gemini-3.1-flash-lite")
+
+# Dengan salah satu dari ini:
+gemini_model = genai.GenerativeModel("gemini-2.0-flash-lite")
+# atau
+gemini_model = genai.GenerativeModel("gemini-1.5-flash")
+```
+
+Hal yang sama berlaku di `inference.ipynb` jika kamu menggunakan Gemini di sana.
+
 ---
 
 ## 📦 Dependencies Utama
@@ -392,6 +465,10 @@ Pastikan path `.env` benar. Inference notebook membaca dari:
 AI/REST API/.env
 ```
 Bukan dari folder notebook itu sendiri.
+
+### Error `404 model not found` pada Gemini
+
+Model `gemini-3.1-flash-lite` di `predictor.py` adalah model preview yang tidak selalu tersedia. Ganti dengan model yang stabil di akun kamu (lihat bagian **Setup → Perhatian Versi Model Gemini** di atas).
 
 ### Model output tidak teridentifikasi
 
