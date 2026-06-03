@@ -50,7 +50,7 @@ Tim AI membangun sistem deteksi emosi berbasis Deep Learning yang mampu mengiden
 ```text
 HealMate-AI/
 │
-├── AI/                         # Machine Learning & LLM Integration
+├── AI/                         # LLM Integration
 │   ├── dataset/
 │   ├── Main/
 │   ├── inference/
