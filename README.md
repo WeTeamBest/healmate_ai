@@ -1,49 +1,83 @@
-# 📋 Project Overview
+# 🏥 HealMate AI – AI-Powered Emotional Recovery Platform
 
-## HealMate AI – AI Powered Emotional Recovery Platform
+## 📋 Project Overview
 
-HealMate AI adalah platform berbasis web yang dirancang untuk membantu individu dalam proses pemulihan emosional melalui dukungan teknologi kecerdasan buatan. Platform ini menyediakan ruang yang aman bagi pengguna untuk mengekspresikan perasaan, memantau perkembangan kondisi emosional, serta membangun kebiasaan positif selama proses pemulihan.
+HealMate AI merupakan platform pemulihan emosional berbasis kecerdasan buatan yang dirancang untuk membantu individu menghadapi fase pasca putus cinta melalui dukungan digital yang empatik, personal, dan berbasis data. Sistem ini mengintegrasikan teknologi LLM, Data Science, dan Web Development untuk menyediakan pengalaman pendampingan emosional yang lebih interaktif dan terukur.
 
-Dengan mengintegrasikan teknologi Artificial Intelligence (AI), HealMate AI mampu memberikan respons yang empatik, melakukan analisis emosi pengguna, serta memberikan rekomendasi yang dipersonalisasi berdasarkan kondisi emosional yang terdeteksi.
+Proyek ini dikembangkan melalui kolaborasi tiga domain utama:
 
-### 🎯 Tujuan Pengembangan
+### 💻 Full Stack Development
 
-* Membantu pengguna dalam mengelola dan memahami kondisi emosional mereka.
-* Menyediakan dukungan konseling berbasis AI yang mudah diakses kapan saja.
-* Membantu pengguna memantau perkembangan kesehatan emosional secara berkelanjutan.
-* Mendorong pembentukan kebiasaan positif melalui target dan aktivitas pemulihan yang terstruktur.
+Tim Full Stack bertanggung jawab membangun aplikasi web HealMate AI menggunakan React, FastAPI, dan MongoDB. Platform menyediakan berbagai fitur seperti AI Chat Counseling, Mood Tracking, Goal Management, Dashboard Monitoring, dan Time Capsule yang dirancang untuk mendukung perjalanan pemulihan emosional pengguna.
 
-### ✨ Fitur Utama
+### 📊 Data Science
 
-#### 💬 AI Emotional Companion
+Tim Data Science mengembangkan pipeline pengolahan data mulai dari pengumpulan dataset, data cleaning, emotion labeling, exploratory data analysis (EDA), hingga perancangan metrik **Healing Score**. Dataset yang dihasilkan berfokus pada konteks pemulihan pasca putus cinta dan menjadi fondasi utama dalam pengembangan model AI.
 
-Fitur percakapan interaktif dengan AI yang dirancang untuk memberikan dukungan emosional, mendengarkan keluhan pengguna, serta memberikan saran yang relevan dan personal.
+### 🤖 Artificial Intelligence
 
-#### 😊 Mood Tracking
+Tim AI membangun sistem deteksi emosi berbasis Deep Learning yang mampu mengidentifikasi emosi pengguna ke dalam kategori **Anxiety**, **Anger**, dan **Acceptance**. Selain melakukan klasifikasi emosi, model juga memprediksi **Healing Score** untuk mengukur tingkat pemulihan emosional pengguna. Hasil prediksi kemudian diintegrasikan dengan Gemini AI untuk menghasilkan respons konseling dan rekomendasi aktivitas yang lebih personal.
 
-Mencatat dan memantau kondisi suasana hati pengguna secara berkala sehingga perkembangan emosional dapat dianalisis dan divisualisasikan dalam bentuk statistik.
+## 🎯 Project Objectives
 
-#### 🎯 Goal Management
+* Membantu pengguna memahami dan mengelola kondisi emosional mereka.
+* Menyediakan pendamping emosional berbasis AI yang dapat diakses kapan saja.
+* Melakukan deteksi dan analisis emosi secara otomatis.
+* Mengukur tingkat pemulihan emosional melalui Healing Score.
+* Memberikan rekomendasi dan dukungan yang dipersonalisasi berdasarkan kondisi pengguna.
+* Mengintegrasikan teknologi AI, Data Science, dan Web Development dalam satu ekosistem aplikasi yang terintegrasi.
 
-Membantu pengguna menetapkan target pemulihan, memantau progres, serta meningkatkan motivasi dalam mencapai tujuan yang telah ditentukan.
+## ✨ Key Features
 
-#### 🧠 Emotion Detection & Analysis
+* 💬 AI Emotional Counseling Chat
+* 😊 Mood Tracking & Emotional Monitoring
+* 🎯 Goal Setting & Progress Tracking
+* 📮 Time Capsule for Self Reflection
+* 🧠 Emotion Detection (Anxiety, Anger, Acceptance)
+* 📊 Healing Score Prediction
+* 🤖 Gemini AI Integration
+* 📈 Personal Recovery Dashboard
+* 🔒 Secure Authentication & User Management
 
-Menganalisis emosi pengguna berdasarkan interaksi yang dilakukan untuk memberikan respons dan rekomendasi yang lebih sesuai dengan kondisi pengguna.
+## 🏗️ Technology Stack
 
-#### 📮 Time Capsule
+### Frontend
 
-Memungkinkan pengguna menulis pesan untuk diri sendiri yang dapat dibuka kembali pada waktu tertentu sebagai bentuk refleksi dan motivasi diri.
+* React.js
+* Vite
+* JavaScript
 
-### 🏗️ Technology Stack
+### Backend
 
-* **Frontend:** React.js + Vite
-* **Backend:** FastAPI (Python)
-* **Database:** MongoDB
-* **Artificial Intelligence:** Google Gemini AI
-* **Deployment:** Vercel & Railway
-* **Authentication:** JWT (JSON Web Token)
+* FastAPI
+* Python
+* MongoDB
+* JWT Authentication
 
-### 🚀 Expected Impact
+### Data Science
 
-HealMate AI diharapkan dapat menjadi solusi digital yang membantu pengguna memperoleh dukungan emosional secara lebih mudah, cepat, dan personal, sekaligus meningkatkan kesadaran akan pentingnya kesehatan mental melalui pemanfaatan teknologi kecerdasan buatan.
+* Pandas
+* NumPy
+* Matplotlib
+* WordCloud
+* Hugging Face Datasets
+
+### Artificial Intelligence
+
+* TensorFlow
+* BERT
+* LSTM
+* GRU
+* CNN
+* BiLSTM
+* BiGRU
+* Gemini AI
+
+### Deployment
+
+* Vercel
+* Railway
+
+## 🚀 Expected Impact
+
+HealMate AI diharapkan dapat menjadi platform pendamping emosional yang membantu pengguna melewati proses pemulihan secara lebih sehat, terarah, dan berbasis teknologi. Dengan memadukan analisis data, kecerdasan buatan, dan pengalaman pengguna yang baik, HealMate AI tidak hanya memberikan ruang untuk bercerita, tetapi juga membantu pengguna memahami perkembangan emosional mereka secara objektif dan berkelanjutan.
