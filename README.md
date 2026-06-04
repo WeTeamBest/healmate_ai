@@ -219,66 +219,6 @@ Model ini digunakan sebagai dasar sistem prediksi emosi dan perhitungan Healing 
 
 ---
 
-## 🛠️ AI Installation & Setup
-
-### Prerequisites
-
-* Python 3.9+
-* pip
-
-### 1. Clone Repository
-
-```bash
-git clone https://github.com/WeTeamBest/healmate_ai.git
-cd healmate_ai
-```
-
-### 2. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Setup Environment Variables
-
-```bash
-cp "AI/REST API/.env-example" "AI/REST API/.env"
-```
-
-Isi file `.env`:
-
-```env
-GEMINI_API_KEY=your_gemini_api_key_here
-```
-
-### Cara Mendapatkan Gemini API Key
-
-1. Buka https://aistudio.google.com/apikey
-2. Login menggunakan akun Google.
-3. Klik **Create API Key**.
-4. Salin API Key dan masukkan ke file `.env`.
-
-### Menjalankan REST API
-
-```bash
-cd "AI/REST API"
-uvicorn main:app --reload
-```
-
-API akan berjalan pada:
-
-```text
-http://localhost:8000
-```
-
-Swagger Documentation:
-
-```text
-http://localhost:8000/docs
-```
-
----
-
 # 💻 Full Stack Application Installation & Setup
 
 ## Yang Dibutuhkan
@@ -362,64 +302,49 @@ npm install
 cp .env.example .env
 ```
 
-Isi file `.env`:
-
-```env
-VITE_API_URL=http://localhost:8000
-```
-
-Jalankan Frontend:
-
-```bash
-npm run dev
-```
-
-**Expected Output**
-
-```text
-VITE v5.0.0 ready in 122 ms
-➜ Local: http://localhost:5173/
-```
-
-⚠️ Jangan menutup terminal ini karena frontend harus tetap berjalan.
-
----
-
-## 📋 Environment Configuration
+## 📋 .env Files
 
 ### Backend (`backend-fastapi-full/.env`)
 
 ```env
 MONGODB_URI=mongodb://localhost:27017/healmate
+# atau cloud: mongodb+srv://user:pass@cluster.mongodb.net/healmate
 
-GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+GEMINI_API_KEY=AIzaSy...your_key...
+# dari https://aistudio.google.com/apikey
 
-JWT_SECRET=YOUR_SECRET_KEY
+JWT_SECRET=your_secret_key
 
-AI_URL=http://localhost:5000
+AI_URL=https://natannet-healmate-ml-api.hf.space
+# Model AI URL
+# Gunakan URL ini agar langsung terhubung ke AI model kami yang ada di cloud
 ```
 
 ### Frontend (`frontend/.env`)
 
 ```env
-VITE_API_URL=http://localhost:8000
+VITE_API_URL=http://localhost:8000/api
+# Backend URL - PENTING!
 ```
 
 ---
 
 ## 🌐 Application Access
 
-| Service           | URL                        |
-| ----------------- | -------------------------- |
-| Frontend          | http://localhost:5173      |
-| Backend API       | http://localhost:8000      |
-| API Documentation | http://localhost:8000/docs |
+| Service           | URL                                       |
+| ----------------- | ----------------------------------------- |
+| Frontend          | http://localhost:5173                     |
+| Backend API       | http://localhost:8000                     |
+| API Documentation | http://localhost:8000/docs                |
+| AI Service        | https://natannet-healmate-ml-api.hf.space |
 
 ---
 
 ## ✅ Application Ready
 
-Setelah Frontend, Backend, dan AI Service berjalan dengan baik, HealMate AI siap digunakan untuk:
+Setelah Backend dan Frontend berhasil dijalankan, aplikasi akan secara otomatis terhubung ke layanan AI yang telah di-deploy pada Hugging Face Spaces.
+
+Fitur yang siap digunakan:
 
 * AI Emotional Counseling Chat
 * Mood Tracking & Emotional Monitoring
@@ -430,6 +355,8 @@ Setelah Frontend, Backend, dan AI Service berjalan dengan baik, HealMate AI siap
 * Gemini AI Integration
 * Personal Recovery Dashboard
 * User Authentication & Management
+
+**Aplikasi siap pakai!**
 
 ---
 
