@@ -312,7 +312,7 @@ Modul preprocessing teks yang dipakai bersama oleh notebook dan REST API:
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/WeTeamBest/healmate_ai.git
+git clone https://github.com/Farizky09/DBSDicoding-Capstone-HealMate_AI.git
 cd healmate_ai
 ```
 

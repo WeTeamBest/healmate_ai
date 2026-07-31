@@ -22,26 +22,26 @@ Tim AI membangun sistem deteksi emosi berbasis Deep Learning yang mampu mengiden
 
 ## 🎯 Project Objectives
 
-* Membantu pengguna memahami dan mengelola kondisi emosional mereka.
-* Menyediakan pendamping emosional berbasis LLM yang dapat diakses kapan saja.
-* Melakukan deteksi dan analisis emosi secara otomatis.
-* Mengukur tingkat pemulihan emosional melalui Healing Score.
-* Memberikan rekomendasi dan dukungan yang dipersonalisasi berdasarkan kondisi pengguna.
-* Mengintegrasikan teknologi LLM, Data Science, dan Web Development dalam satu ekosistem aplikasi yang terintegrasi.
+- Membantu pengguna memahami dan mengelola kondisi emosional mereka.
+- Menyediakan pendamping emosional berbasis LLM yang dapat diakses kapan saja.
+- Melakukan deteksi dan analisis emosi secara otomatis.
+- Mengukur tingkat pemulihan emosional melalui Healing Score.
+- Memberikan rekomendasi dan dukungan yang dipersonalisasi berdasarkan kondisi pengguna.
+- Mengintegrasikan teknologi LLM, Data Science, dan Web Development dalam satu ekosistem aplikasi yang terintegrasi.
 
 ---
 
 ## ✨ Key Features
 
-* 💬 AI Emotional Counseling Chat
-* 😊 Mood Tracking & Emotional Monitoring
-* 🎯 Goal Setting & Progress Tracking
-* 📮 Time Capsule for Self Reflection
-* 🧠 Emotion Detection (Anxiety, Anger, Acceptance)
-* 📊 Healing Score Prediction
-* 🤖 Gemini AI Integration
-* 📈 Personal Recovery Dashboard
-* 🔒 Secure Authentication & User Management
+- 💬 AI Emotional Counseling Chat
+- 😊 Mood Tracking & Emotional Monitoring
+- 🎯 Goal Setting & Progress Tracking
+- 📮 Time Capsule for Self Reflection
+- 🧠 Emotion Detection (Anxiety, Anger, Acceptance)
+- 📊 Healing Score Prediction
+- 🤖 Gemini AI Integration
+- 📈 Personal Recovery Dashboard
+- 🔒 Secure Authentication & User Management
 
 ---
 
@@ -80,15 +80,15 @@ Setiap learning path memiliki dokumentasi teknis yang lebih lengkap:
 
 ### 🤖 Artificial Intelligence
 
-https://github.com/WeTeamBest/healmate_ai/blob/main/AI/README.md
+https://github.com/Farizky09/DBSDicoding-Capstone-HealMate_AI/blob/main/AI/README.md
 
 ### 📊 Data Science
 
-https://github.com/WeTeamBest/healmate_ai/blob/main/DS/README.md
+https://github.com/Farizky09/DBSDicoding-Capstone-HealMate_AI/blob/main/DS/README.md
 
 ### 💻 Full Stack Development
 
-https://github.com/WeTeamBest/healmate_ai/blob/main/FS/README.md
+https://github.com/Farizky09/DBSDicoding-Capstone-HealMate_AI/blob/main/FS/README.md
 
 ---
 
@@ -107,17 +107,17 @@ Folder ini berisi berbagai hasil pengembangan dan pelatihan model yang digunakan
 
 Model deep learning yang telah dilatih untuk melakukan:
 
-* Emotion Classification (Anxiety, Anger, Acceptance)
-* Healing Score Prediction
+- Emotion Classification (Anxiety, Anger, Acceptance)
+- Healing Score Prediction
 
 Arsitektur yang tersedia meliputi:
 
-* LSTM
-* GRU
-* CNN
-* BiLSTM
-* BiGRU
-* BERT
+- LSTM
+- GRU
+- CNN
+- BiLSTM
+- BiGRU
+- BERT
 
 #### 🏆 Best Model
 
@@ -125,35 +125,35 @@ Folder `best_model/` berisi model terbaik hasil evaluasi yang telah diekspor dal
 
 File utama:
 
-* `saved_model.pb`
-* `variables/`
-* `fingerprint.pb`
+- `saved_model.pb`
+- `variables/`
+- `fingerprint.pb`
 
 #### 🔧 Model Artifacts
 
 Folder `artifacts/` berisi komponen yang diperlukan saat proses inferensi:
 
-* `tokenizer.pkl` → Tokenizer untuk preprocessing teks
-* `label_encoder.pkl` → Encoder label emosi
-* `eval_results.json` → Hasil evaluasi seluruh model
+- `tokenizer.pkl` → Tokenizer untuk preprocessing teks
+- `label_encoder.pkl` → Encoder label emosi
+- `eval_results.json` → Hasil evaluasi seluruh model
 
 #### 📊 Training Logs
 
 Folder `logs/` berisi TensorBoard logs dari seluruh proses training dan validasi model:
 
-* LSTM
-* GRU
-* CNN
-* BiLSTM
-* BiGRU
-* BERT
+- LSTM
+- GRU
+- CNN
+- BiLSTM
+- BiGRU
+- BERT
 
 Log ini dapat digunakan untuk:
 
-* Analisis performa training
-* Monitoring loss dan accuracy
-* Evaluasi potensi overfitting
-* Perbandingan antar model
+- Analisis performa training
+- Monitoring loss dan accuracy
+- Evaluasi potensi overfitting
+- Perbandingan antar model
 
 ### 📈 Model Performance Summary
 
@@ -170,9 +170,9 @@ Log ini dapat digunakan untuk:
 
 Berdasarkan hasil evaluasi, model **CNN** dipilih sebagai model utama untuk deployment karena memperoleh:
 
-* Accuracy : **94.38%**
-* F1 Macro : **93.51%**
-* MAE Healing Score : **0.138**
+- Accuracy : **94.38%**
+- F1 Macro : **93.51%**
+- MAE Healing Score : **0.138**
 
 Model ini digunakan sebagai dasar sistem prediksi emosi dan perhitungan Healing Score pada HealMate AI.
 
@@ -182,40 +182,40 @@ Model ini digunakan sebagai dasar sistem prediksi emosi dan perhitungan Healing 
 
 ### Frontend
 
-* React.js
-* Vite
-* JavaScript
+- React.js
+- Vite
+- JavaScript
 
 ### Backend
 
-* FastAPI
-* Python
-* MongoDB
-* JWT Authentication
+- FastAPI
+- Python
+- MongoDB
+- JWT Authentication
 
 ### Data Science
 
-* Pandas
-* NumPy
-* Matplotlib
-* WordCloud
-* Hugging Face Datasets
+- Pandas
+- NumPy
+- Matplotlib
+- WordCloud
+- Hugging Face Datasets
 
 ### Artificial Intelligence
 
-* TensorFlow
-* BERT
-* LSTM
-* GRU
-* CNN
-* BiLSTM
-* BiGRU
-* Gemini AI
+- TensorFlow
+- BERT
+- LSTM
+- GRU
+- CNN
+- BiLSTM
+- BiGRU
+- Gemini AI
 
 ### Deployment
 
-* Vercel
-* Railway
+- Vercel
+- Railway
 
 ---
 
@@ -223,16 +223,16 @@ Model ini digunakan sebagai dasar sistem prediksi emosi dan perhitungan Healing 
 
 ## Yang Dibutuhkan
 
-* Git
-* Python 3.9+
-* Node.js 18+
+- Git
+- Python 3.9+
+- Node.js 18+
 
 ---
 
 ### Langkah 1: Clone Repository
 
 ```bash
-git clone https://github.com/WeTeamBest/healmate_ai.git
+git clone https://github.com/Farizky09/DBSDicoding-Capstone-HealMate_AI.git
 cd healmate_ai/FS
 ```
 
@@ -346,15 +346,15 @@ Setelah Backend dan Frontend berhasil dijalankan, aplikasi akan secara otomatis 
 
 Fitur yang siap digunakan:
 
-* AI Emotional Counseling Chat
-* Mood Tracking & Emotional Monitoring
-* Goal Management
-* Time Capsule
-* Emotion Detection
-* Healing Score Prediction
-* Gemini AI Integration
-* Personal Recovery Dashboard
-* User Authentication & Management
+- AI Emotional Counseling Chat
+- Mood Tracking & Emotional Monitoring
+- Goal Management
+- Time Capsule
+- Emotion Detection
+- Healing Score Prediction
+- Gemini AI Integration
+- Personal Recovery Dashboard
+- User Authentication & Management
 
 **Aplikasi siap pakai!**
 
